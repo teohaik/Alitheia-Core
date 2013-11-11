@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>eu.sqooss</groupId>
+    <artifactId>metrics</artifactId>
+    <version>0.95-SNAPSHOT</version>
+  </parent>
+  <groupId>gr.uom.alitheia</groupId>
+  <artifactId>test-uom-metrics</artifactId>
+  <version>0.1</version>
+  <packaging>bundle</packaging>
+  <name>Testing Metric Plugin in Alitheia Core by UoM</name>
+  <dependencies>
+    <dependency>
+      <groupId>eu.sqooss.alitheia</groupId>
+      <artifactId>core</artifactId>
+      <version>0.95-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.core</artifactId>
+      <version>4.2.0</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.compendium</artifactId>
+      <version>4.2.0</version>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>2.2.0</version>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Export-Package>gr.uom.alitheia.metrics</Export-Package>
+            <Bundle-Activator>gr.uom.alitheia.metrics.Activator</Bundle-Activator>
+            <Bundle-SymbolicName>gr.uom.alitheia.metrics</Bundle-SymbolicName>
+            <Bundle-Version>0.1</Bundle-Version>
+            <Bundle-Vendor>gr.uom.alitheia</Bundle-Vendor>
+            <Bundle-Description>gr.uom.alitheia.test-uom-metrics Alitheia Core metric</Bundle-Description>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
