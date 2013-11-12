@@ -50,6 +50,7 @@ import java.util.regex.Pattern;
 
 import eu.sqooss.core.AlitheiaCore;
 import eu.sqooss.service.db.*;
+import gr.uom.alitheia.metrics.parser.ASTReader;
 import org.osgi.framework.BundleContext;
 
 /* These are imports of standard Alitheia core services and types.
@@ -143,6 +144,12 @@ public class TestMetric extends AbstractMetric {
 
         System.out.println("Number of Java files: " + noJFiles);
         System.out.println("Total lines of Java files: " + noLines);
+        /*
+        try{
+            new ASTReader("C:\\Users\\teo\\workspace\\JEdit_All_versions\\jedit-4-0-0");
+        }
+        catch (Exception e){ e.printStackTrace(); }
+        */
     }
 
     /**

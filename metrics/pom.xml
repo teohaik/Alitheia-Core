@@ -27,8 +27,9 @@
     <module>developermetrics</module>
     <module>findbugs</module>
     <module>javametrics</module>
-    <module>test-uom-metrics</module>
+    <module>teotest</module>
   </modules>
+
 
   <build>
     <plugins>
