@@ -7,11 +7,13 @@
         <artifactId>metrics</artifactId>
         <version>0.95-SNAPSHOT</version>
     </parent>
-    <groupId>gr.uom.alitheia</groupId>
-    <artifactId>test-uom-metrics</artifactId>
+
+    <groupId>eu.sqooss.metrics</groupId>
+    <artifactId>gr.uom.metrics.teotest</artifactId>
     <version>0.1</version>
     <packaging>bundle</packaging>
     <name>Testing Metric Plugin in Alitheia Core by UoM</name>
+
 
     <repositories>
         <repository>
@@ -37,6 +39,46 @@
         </repository>
     </repositories>
 
+    <build>
+        <resources>
+            <resource>
+                <targetPath>eu/sqooss/service/db</targetPath>
+                <directory>src/main/java/${project.groupId}/${project.artifactId}/db</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.2.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
+                        <Import-Package>*;resolution:=optional</Import-Package>
+                        <Export-Package>gr.uom.metrics.teotest</Export-Package>
+                        <Bundle-Activator>gr.uom.metrics.teotest.SimpleMetricsActivator</Bundle-Activator>
+                        <Bundle-SymbolicName>gr.uom.metrics.simplemetrics</Bundle-SymbolicName>
+                        <Bundle-Version>0.1</Bundle-Version>
+                        <Bundle-Vendor>Theodore Chaikalis</Bundle-Vendor>
+                        <Bundle-Description>test-uom-metrics dummy metric</Bundle-Description>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
 
     <dependencies>
         <dependency>
@@ -56,17 +98,20 @@
             <version>4.2.0</version>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>org.eclipse.text</groupId>
-            <artifactId>org.eclipse.text</artifactId>
-            <version>3.5.101</version>
-        </dependency>
+
+        <!--
+
         <dependency>
             <groupId>org.eclipse.jdt</groupId>
             <artifactId>org.eclipse.jdt.core</artifactId>
             <version>3.7.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.team.core</groupId>
+                    <artifactId>org.eclipse.team.core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-        <!--
         <dependency>
             <groupId>org.eclipse.osgi</groupId>
             <artifactId>org.eclipse.core.contenttype</artifactId>
@@ -81,17 +126,42 @@
             <groupId>org.eclipse.core</groupId>
             <artifactId>org.eclipse.core.resources</artifactId>
             <version>3.7.100</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.core.expressions</groupId>
+                    <artifactId>org.eclipse.core.expressions</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.ant.core</groupId>
+                    <artifactId>org.eclipse.ant.core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.osgi</groupId>
+            <artifactId>org.eclipse.core.runtime</artifactId>
+            <version>3.8.0.v20110920-2042</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.core.internal.runtime.auth</groupId>
+                    <artifactId>org.eclipse.core.internal.runtime.auth</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.equinox.registry</groupId>
+                    <artifactId>org.eclipse.equinox.registry</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.eclipse.core</groupId>
             <artifactId>org.eclipse.core.filesystem</artifactId>
             <version>1.3.100</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.eclipse.osgi</groupId>
-            <artifactId>org.eclipse.core.runtime</artifactId>
-            <version>3.8.0.v20110920-2042</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.equinox.registry</groupId>
+                    <artifactId>org.eclipse.equinox.registry</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.eclipse.equinox</groupId>
@@ -102,6 +172,12 @@
             <groupId>org.eclipse.equinox</groupId>
             <artifactId>preferences</artifactId>
             <version>3.5.100-v20130422-1538</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.equinox.registry</groupId>
+                    <artifactId>org.eclipse.equinox.registry</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -109,33 +185,24 @@
             <artifactId>services</artifactId>
             <version>3.1.200-v20070605</version>
         </dependency>
-
         <dependency>
             <groupId>org.eclipse.osgi</groupId>
             <artifactId>org.eclipse.osgi</artifactId>
             <version>3.7.0.v20110613</version>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse.text</groupId>
+            <artifactId>org.eclipse.text</artifactId>
+            <version>3.5.101</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.core.commands</groupId>
+                    <artifactId>org.eclipse.core.commands</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
 
         -->
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <version>2.2.0</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <instructions>
-                        <Export-Package>gr.uom.metrics.teotest</Export-Package>
-                        <Bundle-Activator>gr.uom.metrics.teotest.Activator</Bundle-Activator>
-                        <Bundle-SymbolicName>gr.uom.metrics.teotest</Bundle-SymbolicName>
-                        <Bundle-Version>0.1</Bundle-Version>
-                        <Bundle-Vendor>Theodore Chaikalis</Bundle-Vendor>
-                        <Bundle-Description>test-uom-metrics dummy metric</Bundle-Description>
-                    </instructions>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>
