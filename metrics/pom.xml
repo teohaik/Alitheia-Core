@@ -17,6 +17,7 @@
 
   <modules>
     <module>archetype</module>
+      <!--
     <module>wc</module>
     <module>structural</module>
     <module>modulemetrics</module>
@@ -27,6 +28,7 @@
     <module>developermetrics</module>
     <module>findbugs</module>
     <module>javametrics</module>
+    -->
     <module> test-metric-uom</module>
 
 </modules>

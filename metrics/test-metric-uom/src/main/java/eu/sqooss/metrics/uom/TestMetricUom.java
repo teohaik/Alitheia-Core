@@ -1,32 +1,13 @@
 package eu.sqooss.metrics.uom;
 
-import java.io.InputStream;
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-
+import eu.sqooss.service.abstractmetric.*;
+import eu.sqooss.service.db.*;
 import org.osgi.framework.BundleContext;
 
-import eu.sqooss.core.AlitheiaCore;
-import eu.sqooss.service.abstractmetric.AbstractMetric;
-import eu.sqooss.service.abstractmetric.MetricDecl;
-import eu.sqooss.service.abstractmetric.MetricDeclarations;
-import eu.sqooss.service.abstractmetric.Result;
-import eu.sqooss.service.abstractmetric.SchedulerHints;
-import eu.sqooss.service.db.DBService;
-import eu.sqooss.service.db.EncapsulationUnit;
-import eu.sqooss.service.db.EncapsulationUnitMeasurement;
-import eu.sqooss.service.db.ExecutionUnit;
-import eu.sqooss.service.db.ExecutionUnitMeasurement;
-import eu.sqooss.service.db.Metric;
-import eu.sqooss.service.db.ProjectFile;
-import eu.sqooss.service.db.ProjectVersion;
-
-
 import javax.swing.*;
+import java.util.List;
+import java.util.concurrent.ConcurrentMap;
+import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
 @MetricDeclarations(metrics = {
   @MetricDecl(mnemonic = "TEST_UOM", activators = {ExecutionUnit.class, ProjectVersion.class}, descr = "Test UoM metric"),
@@ -42,7 +23,24 @@ public class TestMetricUom extends AbstractMetric {
 
     public TestMetricUom(BundleContext bc) {
         super(bc);
-        javax.swing.JOptionPane.showMessageDialog(null,"Hello from the Test metric UoM plugin!");
+
+        testMath();
+    }
+
+    public void testMath(){
+        DescriptiveStatistics stats = new DescriptiveStatistics();
+
+        int[] inputArray = new int[]{15,60,950,45,78,41,23,350};
+
+        for( int i = 0; i < inputArray.length; i++) {
+            stats.addValue(inputArray[i]);
+        }
+
+// Compute some statistics
+        double mean = stats.getMean();
+        double std = stats.getStandardDeviation();
+        double median = stats.getPercentile(50);
+        JOptionPane.showMessageDialog(null,"Mean = "+mean+"\n std = "+std+"\n median = "+median);
     }
 
     public List<Result> getResult(ProjectFile a, Metric m) {
