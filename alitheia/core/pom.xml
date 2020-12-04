@@ -123,7 +123,7 @@
     <dependency>
       <groupId>org.jboss.resteasy</groupId>
       <artifactId>resteasy-jaxrs</artifactId>
-      <version>1.2.1.GA</version>
+      <version>3.0.20.Final</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.resteasy</groupId>
