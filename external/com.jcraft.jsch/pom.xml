@@ -12,7 +12,7 @@
     <bundle.symbolicName>com.jcraft.jsch</bundle.symbolicName>
     <wrapped.groupId>com.jcraft</wrapped.groupId>
     <wrapped.artifactId>jsch</wrapped.artifactId>
-    <wrapped.version>0.1.42</wrapped.version>
+    <wrapped.version>0.1.54</wrapped.version>
   </properties>
 
   <modelVersion>4.0.0</modelVersion>
