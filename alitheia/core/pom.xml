@@ -133,7 +133,7 @@
     <dependency>
       <groupId>org.jboss.resteasy</groupId>
       <artifactId>resteasy-jettison-provider</artifactId>
-      <version>1.2.GA</version>
+      <version>3.0.20.Final</version>
    </dependency>
     <dependency>
       <groupId>org.scannotation</groupId>
@@ -155,7 +155,7 @@
     <dependency>
       <groupId>org.codehaus.jettison</groupId>
       <artifactId>jettison</artifactId>
-      <version>1.2</version>
+      <version>1.5.4</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
